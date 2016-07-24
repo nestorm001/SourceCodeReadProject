@@ -1,13 +1,13 @@
 ### HashMap源码阅读
 
 #### 前言
-HashMap作为一种常用的集合类型，其中的设计必然有许多值得学习的地方，阅读其源码不仅可以学习设计思路，更可以帮助我们更好的使用HashMap
+HashMap作为一种常用的集合类型，其中的设计必然有许多值得学习的地方，阅读其源码不仅可以学习设计思路，更可以帮助我们更好的使用HashMap  
 由于HashMap中涉及的点较多，一次性看完写完也不太现实，坑就慢慢填吧...
 
 #### 源码阅读
 ##### 从HashMap的存储table开始说起
 ```java
-	/**
+    /**
      * The table, initialized on first use, and resized as
      * necessary. When allocated, length is always a power of two.
      * (We also tolerate length zero in some operations to allow
@@ -17,7 +17,7 @@ HashMap作为一种常用的集合类型，其中的设计必然有许多值得�
 ```
 对于HashMap和HashSet(内部由HashMap实现)，由于通过数组来进行Key的散列存储，每次需要扩容时，需要进行一次内存分配和数组的拷贝(每次翻倍，大小为2的幂次方)，因此在提前知道大小的情况下，直接指定大小可以提高不少的效率。
 
-从前面的Node数组可以看到HashMap的主要存储容器
+Node数组table为HashMap存储的实现
 
 下面来看看内部类Node的实现
 ```java
@@ -62,7 +62,7 @@ HashMap作为一种常用的集合类型，其中的设计必然有许多值得�
     }
 ```
 
-从上面的实现可以看到，Node类内部存储了hash值(作为table中的index使用)，key、value为entry本身的值
-由Node next可以看出，Node类本身还可以构成一个链表，当多个entry的hash值相等时，使用链表进行维护
-以上便是HashMap内部存储只要实现的原理，剩下的坑慢慢填，慢慢填...
+从上面的实现可以看到，Node类内部存储了hash值(作为table中的index使用)，key、value为entry本身的值   
+由Node next可以看出，Node类本身还可以构成一个链表，当多个entry的hash值相等时，使用链表进行维护   
+以上便是HashMap内部存储只要实现的原理，剩下的坑慢慢填，慢慢填...   
 
